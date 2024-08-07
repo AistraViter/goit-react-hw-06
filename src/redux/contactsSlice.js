@@ -1,5 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { nanoid } from "nanoid";
+import { createSlice, nanoid } from "@reduxjs/toolkit";
 
 const contactsSlice = createSlice({
   name: "contacts",
@@ -24,6 +23,9 @@ const contactsSlice = createSlice({
   },
 });
 
+export default contactsSlice.reducer;
+
+
 export const addContact = (name, number) => {
     return {
       type: "contacts/addContact",
@@ -42,4 +44,3 @@ export const addContact = (name, number) => {
     };
   };
   
-export default contactsSlice.reducer;
