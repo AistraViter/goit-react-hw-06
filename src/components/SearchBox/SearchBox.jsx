@@ -1,4 +1,5 @@
 import { useId } from "react";
+import { useSelector } from "react-redux";
 import styles from "./SearchBox.module.css";
 const SearchBox = ({inputValue = "", handleChange}) => {
   const { searchBox } = styles;
