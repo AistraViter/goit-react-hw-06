@@ -24,18 +24,15 @@ const initialValues = {
   number: "",
 };
 
-
-
 const ContactForm = () => {
   const dispatch = useDispatch();
   const { contactForm } = styles;
   const id = useId();
 
   const handleSubmit = (values, { resetForm }) => {
-    dispatch(addContact(values));
+    dispatch(addContact(values.name, values.number));
     resetForm();
   };
-  
 
   return (
     <Formik
