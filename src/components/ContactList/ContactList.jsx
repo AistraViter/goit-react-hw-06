@@ -1,19 +1,25 @@
+import {useMemo } from "react"
 import { useSelector } from "react-redux";
 import Contact from "../Contact/Contact";
-import { selectFilteredContacts } from "../../redux/filtersSlice";
+import { selectContacts } from "../../redux/contactsSlice";
+import { selectFilter } from "../../redux/filtersSlice";
 import styles from "./ContactList.module.css";
-
-
-
-
 
 const ContactList = () => {
   const { ContactListContainer } = styles;
-  const contacts = useSelector(selectFilteredContacts);
+  const contacts = useSelector(selectContacts);
+  const filter = useSelector(selectFilter);
+
+  // Мемоізація відфільтрованих контактів
+  const filteredContacts = useMemo(() => {
+    return contacts.filter((contact) =>
+      contact.name.toLowerCase().includes(filter.toLowerCase())
+    );
+  }, [contacts, filter]);
 
   return (
     <ul className={ContactListContainer}>
-      {contacts.map((contact) => (
+      {filteredContacts.map((contact) => (
         <li key={contact.id}>
           <Contact contact={contact} />
         </li>
